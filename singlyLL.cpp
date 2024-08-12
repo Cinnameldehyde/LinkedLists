@@ -66,30 +66,33 @@ void insertAtPosition(Node* &tail, Node* &head, int position, int d){
     
 };
 
-void deleteNode(int position,Node* &head){
+void deleteNode(int position, Node* & head) { 
 
-    //deleting first node
-    if(position == 1){
+    //deleting first or start node
+    if(position == 1) {
         Node* temp = head;
-        head = head->next;
-        // now to free memory of start node
-        temp->next = NULL;
-        delete temp; 
+        head = head -> next;
+        //memory free start ndoe
+        temp -> next = NULL;
+        delete temp;
     }
-
-    // deleting middle or last node
-    else{
+    else
+    {
+        //deleting any middle node or last node
         Node* curr = head;
         Node* prev = NULL;
-        int count = 1;
-        while (count < position){
+
+        int cnt = 1;
+        while(cnt < position) {
             prev = curr;
-            curr = curr->next;
-            count++;
+            curr = curr -> next;
+            cnt++;
         }
-        prev ->next = curr -> next;
-        curr -> next = NULL;
+
+        prev -> next = curr -> next;
+        curr -> next  = NULL;
         delete curr;
+
     }
 }
 
@@ -127,5 +130,6 @@ int main(void){
 
     cout << "head " << head -> data << endl; 
     cout << "tail " << tail -> data << endl;
+    // tail not updated????
     return 0; 
 }

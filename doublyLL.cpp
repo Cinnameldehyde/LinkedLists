@@ -4,8 +4,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* prev = nullptr;
-    Node* next = nullptr;
+    Node* prev = NULL;
+    Node* next = NULL;
 
     Node(int d){
         this->data = d;
