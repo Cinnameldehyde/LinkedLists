@@ -68,7 +68,7 @@ void insertAtPos(Node* &head, int d, int pos){
         return;
     }
     Node* curr = head;
-    while(pos-- >> 1 && curr->next != NULL){
+    while(pos-- > 1 && curr->next != NULL){
         curr = curr -> next;
     }
 
@@ -117,7 +117,7 @@ int main(void){
     Node* head = node1;
     Print(head);
     cout << "length = " << getLength(head) << endl;
-    cout << head << " : head ";
+    cout << head << " : head " << endl;
 
     //insertAtHead(head, 10);
     //Print(head);
@@ -127,19 +127,29 @@ int main(void){
     insertAtTail(head, 25);
     Print(head);
     cout << "length = " << getLength(head) << endl;
-        cout << head << " : head ";
+    cout<< head << " : head " << endl;
         insertAtTail(head, 50);
     Print(head);
     cout << "length = " << getLength(head) << endl;
-        cout << head << " : head ";
+    cout<< head << " : head " << endl;
         insertAtTail(head, 70);
     Print(head);
     cout << "length = " << getLength(head) << endl;
-        cout << head << " : head ";
+    cout << head << " : head " << endl;
 
-    insertAtPos(head, 9, 6);
+    insertAtPos(head, 9, 1);
     Print(head);
     cout << "length = " << getLength(head) << endl;
-    cout <<endl<< &head << " : head " << endl;
+    cout << head << " : head " << endl;
+
+    deleteNode(head, 1);
+    Print(head);
+    cout << "length = " << getLength(head) << endl;
+    cout << head << " : head " << endl;
+
+    deleteNode(head, 3);
+    Print(head);
+    cout << "length = " << getLength(head) << endl;
+    cout << head << " : head " << endl;
     return 0;
  }
