@@ -80,13 +80,13 @@ void deleteNode(int position, Node* & head) {
     {
         //deleting any middle node or last node
         Node* curr = head;
-        Node* prev = NULL;
-
-        int cnt = 1;
-        while(cnt < position) {
+        //Node* prev = NULL;
+        Node* prev = curr;
+        //int cnt = 1;
+        while(position -- > 1) {
             prev = curr;
             curr = curr -> next;
-            cnt++;
+            //cnt++;
         }
 
         prev -> next = curr -> next;
@@ -125,7 +125,7 @@ int main(void){
     cout << "head " << head -> data << endl; 
     cout << "tail " << tail -> data << endl;
 
-    deleteNode(4, head);
+    deleteNode(2, head);
     print(head);
 
     cout << "head " << head -> data << endl; 
