@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class Node {
+struct Node {
     public:
     int data;
     Node* next;
@@ -130,6 +130,11 @@ int main(void){
 
     cout << "head " << head -> data << endl; 
     cout << "tail " << tail -> data << endl;
-    // tail not updated????
+    
+    delete head;
+    print(head);
+
+    cout << "head " << head -> data << endl; 
+    cout << "tail " << tail -> data << endl;
     return 0; 
 }
