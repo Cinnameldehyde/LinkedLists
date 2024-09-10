@@ -35,8 +35,8 @@ void deQueue(void){
         cout << "Underflow\n";
     }
     else{
-        queue* p = front;
-        int item = p -> data;
+
+        int item = front -> data;
         // condition: only one element in queue
         if(front == rear){
             // similar to front = rear = -1;

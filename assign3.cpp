@@ -1,172 +1,118 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+#include<iostream>
+using namespace std ;
 
-struct Node
-{
-public:
-    int data;
-    Node *next;
-    Node(int d) : data(d), next(nullptr) {}
-    ~Node()
-    {
-        int value = this->data;
-        if (this->next != nullptr)
-        {
-            delete next;
-            this->next = nullptr;
-        }
-        cout << "Memory is freed for node with data " << value << endl;
-    }
+struct node{
+    int data ;
+    node*next;
+    node(int d){
+        
+    
+    data=d;
+    next=NULL;
+}
 };
-
-void insertAtTail(Node *&head, int d)
+void insertAthead(node* &head,node* &tail,int d)
 {
-    Node *temp = new Node(d);
-    if (head == nullptr)
-    {
-        head = temp;
-        return;
+    node*p=new node(d);
+    if(head==NULL){
+        head=p;
+        tail=p;
     }
-    Node *last = head;
-    while (last->next != nullptr)
-    {
-        last = last->next;
+    else{
+               p->next=head;
+               head=p;
+
     }
-    last->next = temp;
+    
 }
 
-void Print(Node *head)
+void insertAttail(node* &head,node* &tail,int d)
 {
-    Node *temp = head;
-    while (temp != nullptr)
-    {
-        cout << temp->data << " ";
-        temp = temp->next;
+    node*p=new node(d);
+    if(head==NULL){
+        head=p;
+        tail=p;
     }
-    cout << endl;
+    else{
+        tail->next=p;
+        tail=p;
+
+
+
+    }
+    
+}
+void print(node* &head,node* &tail)
+
+{
+          node*p=head;
+          while( p!=NULL)
+          {
+            cout<<p->data<<" ";
+            p=p->next;
+
+          }
+
+}
+void insertAtposition(node* &head,int pos,int d)
+{
+    if(pos<1)
+    {
+        cout<<"invalid ";
+
+    }
+    node**current= &head;
+    while(pos-- >1)
+
+    {
+     current=&(*current)->next;
+    }
+    node*p=new node(d);
+    p->next=*current;
+    *current=p;
+    
 }
 
-void Search(Node *&head)
-{
-    int s;
-    vector<int> index_vec;
-    Node *temp = head;
-    cout << "Enter element to search: ";
-    cin >> s;
-
-    int index = 1;
-    while (temp != nullptr)
-    {
-        if (temp->data == s)
-        {
-            index_vec.push_back(index);
-        }
-        temp = temp->next;
-        index++;
-    }
-
-    if (index_vec.empty())
-    {
-        insertAtTail(head, s);
-        cout << "Not found. Updated LL = \n";
-        Print(head);
-    }
-    else
-    {
-        cout << "Found at ";
-        for (int idx : index_vec)
-        {
-            cout << idx << " ";
-        }
-        cout << endl;
-    }
+int length(node* &head){
+ int i = 0;
+ node* p = head;
+ while(p!= NULL){
+    i++;
+    p=p->next;
+ }
+ return i;
 }
 
-void insertPos(Node *&head, int pos, int data)
-{
-    if (pos < 1)
-    {
-        cout << "Invalid position!" << endl;
-        return;
+void find(node* &head, int key){
+    int len = length(head);
+    int travel = len - key;
+    node* p= head;
+    while (travel-->0 && p != NULL){
+        p = p->next;
     }
-    Node **current = &head;
-    while (pos-- > 1)
-    {
-        if (*current == nullptr)
-        {
-            cout << "Position exceeds list length!" << endl;
-            return;
-        }
-        current = &(*current)->next;
-    }
-    Node *temp = new Node(data);
-    temp->next = *current;
-    *current = temp;
+    cout << p-> data << "found node";
 }
-
-void Delete(Node *&head)
-{
-    int i;
-    cout << "Enter position to delete: ";
-    cin >> i;
-    if (i < 1)
-    {
-        cout << "Invalid position!" << endl;
-        return;
-    }
-    if (i == 1)
-    {
-        Node *temp = head;
-        if (head)
-        {
-            head = head->next;
-            temp->next = nullptr;
-            delete temp;
-        }
-    }
-    else
-    {
-        Node *curr = head;
-        Node *prev = nullptr;
-        int cnt = 1;
-        while (curr != nullptr && cnt < i)
-        {
-            prev = curr;
-            curr = curr->next;
-            cnt++;
-        }
-        if (curr != nullptr)
-        {
-            prev->next = curr->next;
-            curr->next = nullptr;
-            delete curr;
-        }
-        else
-        {
-            cout << "Position exceeds list length!" << endl;
-        }
-    }
-    cout << "Updated LL = \n";
-    Print(head);
-}
-
 int main()
 {
-    Node *head = nullptr;
-    int i, d;
-    cout << "Enter number of elements: ";
-    cin >> i;
-    for (int n = 0; n < i; n++)
-    {
-        cout << "Enter data: ";
-        cin >> d;
-        insertAtTail(head, d);
-    }
-    Print(head);
-    Search(head);
-    Delete(head);
-    insertPos(head, 2, 68);
-    Print(head);
-    return 0;
+node*head=NULL;
+node*tail=NULL;
+insertAthead(head,tail,5);
+insertAthead(head,tail,4);
+insertAthead(head,tail,3);
+insertAthead(head,tail,2);
+print(head,tail);
+
+cout << "\n" << "\n";
+insertAtposition(head,3,15);
+print(head,tail);
+cout << "\n length is : " << length(head)<<endl;
+find(head,4);
+return 0;
+
+
+
 }
+
+
+    
+

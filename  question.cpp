@@ -26,30 +26,6 @@ void insertAthead(node* &head,node* &tail,int d)
     
 }
 
-/* Takes head pointer of the linked list and sum*/
-int check_pair_sum(node* head, int sum)
-{
-	node* p = head, *q;
-	while (p != NULL) {
-	
-		q = p->next;
-		while (q != NULL) {
-
-		// check if both sum is equal to
-		// given sum
-		if ((p->data) + (q->data) == sum) {
-			cout << p->data << " " << q->data;
-			return true;
-		}	 
-		q = q->next;		 
-		}
-
-		p = p->next;
-	}
-
-	return 0;
-}
-
 void insertAttail(node* &head,node* &tail,int d)
 {
     node*p=new node(d);
@@ -96,6 +72,16 @@ void insertAtposition(node* &head,int pos,int d)
     *current=p;
     
 }
+
+int length(node* &head){
+ int i = 0;
+ node* p = head;
+ while(p!= NULL){
+    i++;
+    p=p->next;
+ }
+ return i;
+}
 int main()
 {
 node*head=NULL;
@@ -109,12 +95,7 @@ print(head,tail);
 cout << "\n" << "\n";
 insertAtposition(head,3,15);
 print(head,tail);
-/* function to print the result*/
-
-	if (check_pair_sum(head, 7) == false)
-		cout << "NO PAIR EXIST";
-    else
-        cout << "Pair Exist\n";
+cout << "\n length is : " << length(head);
 return 0;
 
 
@@ -123,7 +104,4 @@ return 0;
 
 
     
-
-
-
 
